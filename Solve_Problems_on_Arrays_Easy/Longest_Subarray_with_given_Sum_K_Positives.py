@@ -6,6 +6,8 @@ class Longest_Subarray_with_given_Sum_K_Positives:
     def longestSubArray(self):
         left = 0
         current_sum = 0
+        max_len = 0
+        result = []
 
         for right in range(len(self.arr)):
             current_sum += self.arr[right]
@@ -15,13 +17,15 @@ class Longest_Subarray_with_given_Sum_K_Positives:
                 left += 1
 
             if current_sum == self.target:
-                return self.arr[left:right+1]
+                if right - left + 1 > max_len:
+                    max_len = right - left + 1
+                    result = self.arr[left:right+1]
 
-        return []
+        return result
     
 
-nums = [10, 5, 2, 7, 1, 9]
-target = 14
+nums = [10, 8, 5, 2, 7, 1, 9]
+target = 8
 
 obj = Longest_Subarray_with_given_Sum_K_Positives(nums, target)
 print(obj.longestSubArray())
